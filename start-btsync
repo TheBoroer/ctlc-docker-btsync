@@ -1,27 +1,39 @@
 #!/bin/bash
-SECRET="${@}"
-: ${SECRET:=`btsync --generate-secret`}
+# General Settings
+BTS_DEVICE_NAME=${BTS_DEVICE_NAME:="Sync Server"}
+BTS_LISTENING_PORT=${BTS_LISTENING_PORT:=55555}
+BTS_USE_UPNP=${BTS_USE_UPNP:=false}
+BTS_DOWNLOAD_LIMIT=${BTS_DOWNLOAD_LIMIT:=0}
+BTS_UPLOAD_LIMIT=${BTS_UPLOAD_LIMIT:=0}
 
-echo "Starting btsync with secret: $SECRET"
+# Folder Settings
+BTS_SECRET=${BTS_SECRET:="`btsync --generate-secret`"}
+BTS_USE_RELAY=${BTS_USE_RELAY:=false}
+BTS_USE_TRACKER=${BTS_USE_TRACKER:=true}
+BTS_USE_DHT=${BTS_USE_DHT:=false}
+BTS_SEARCH_LAN=${BTS_SEARCH_LAN:=true}
+BTS_USE_TRASH=${BTS_USE_TRASH:=false}
+
+echo "Starting btsync with secret: $BTS_SECRET"
 
 echo "{
-    \"device_name\": \"Sync Server\",
-    \"listening_port\": 55555,
+    \"device_name\": \"$BTS_DEVICE_NAME\",
+    \"listening_port\": $BTS_LISTENING_PORT,
     \"storage_path\": \"/btsync/.sync\",
     \"pid_file\": \"/var/run/btsync/btsync.pid\",
     \"check_for_updates\": false,
-    \"use_upnp\": false,
-    \"download_limit\": 0,
-    \"upload_limit\": 0,
+    \"use_upnp\": $BTS_USE_UPNP,
+    \"download_limit\": $BTS_DOWNLOAD_LIMIT,
+    \"upload_limit\": $BTS_UPLOAD_LIMIT,a
     \"shared_folders\": [
         {
-            \"secret\": \"$SECRET\",
+            \"secret\": \"$BTS_SECRET\",
             \"dir\": \"/data\",
-            \"use_relay_server\": true,
-            \"use_tracker\": true,
-            \"use_dht\": false,
-            \"search_lan\": true,
-            \"use_sync_trash\": false
+            \"use_relay_server\": $BTS_USE_RELAY,
+            \"use_tracker\": $BTS_USE_TRACKER,
+            \"use_dht\": $BTS_USE_DHT,
+            \"search_lan\": $BTS_SEARCH_LAN,
+            \"use_sync_trash\": $BTS_USE_TRASH
         }
     ]
 }" > /btsync/btsync.conf
