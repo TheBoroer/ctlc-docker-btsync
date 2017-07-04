@@ -7,7 +7,7 @@ RUN cd /usr/bin && tar -xzvf btsync.tar.gz && rm btsync.tar.gz
 RUN mkdir -p /btsync/.sync
 RUN mkdir -p /var/run/btsync
 RUN mkdir -p /data
-EXPOSE 8888
+#EXPOSE 8888
 EXPOSE 55555
 ADD start-btsync /usr/bin/start-btsync
 RUN chmod +x /usr/bin/start-btsync
