@@ -24,7 +24,7 @@ echo "{
     \"check_for_updates\": false,
     \"use_upnp\": $BTS_USE_UPNP,
     \"download_limit\": $BTS_DOWNLOAD_LIMIT,
-    \"upload_limit\": $BTS_UPLOAD_LIMIT,a
+    \"upload_limit\": $BTS_UPLOAD_LIMIT,
     \"shared_folders\": [
         {
             \"secret\": \"$BTS_SECRET\",
