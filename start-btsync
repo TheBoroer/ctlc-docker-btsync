@@ -8,6 +8,7 @@ BTS_UPLOAD_LIMIT=${BTS_UPLOAD_LIMIT:=0}
 
 # Folder Settings
 BTS_SECRET=${BTS_SECRET:="`btsync --generate-secret`"}
+BTS_OVERWRITE_CHANGES=${BTS_OVERWRITE_CHANGES:=true}
 BTS_USE_RELAY=${BTS_USE_RELAY:=false}
 BTS_USE_TRACKER=${BTS_USE_TRACKER:=true}
 BTS_USE_DHT=${BTS_USE_DHT:=false}
@@ -29,6 +30,7 @@ echo "{
         {
             \"secret\": \"$BTS_SECRET\",
             \"dir\": \"/data\",
+            \"overwrite_changes\": $BTS_OVERWRITE_CHANGES,
             \"use_relay_server\": $BTS_USE_RELAY,
             \"use_tracker\": $BTS_USE_TRACKER,
             \"use_dht\": $BTS_USE_DHT,
